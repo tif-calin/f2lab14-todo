@@ -49,3 +49,15 @@ Change all the files in the `data` directory to match the data model of your app
 - `/__tests__/app.test.js` contains testing file for routes. It has before code to run your db setup and after code to close the db connection
 - Use `npm run test:watch` to start tests in watch mode
 - Routes go in `app.js` (not `server.js`)
+
+# Plan
+1. Change the data to todo data
+2. Change create-tables, drop-tables, load-seed-data, etc.
+3. Define endpoints in app.js
+    - GET /api/me/todos
+    - POST api/todos
+    -DELETE /api/todos/:id
+    -PUT /api/todos/:id/completed
+    - (stretch) PUT /api/todos/:id/shared
+    - (stretch) GET /api/todos
+4. Heroku Deployment
