@@ -22,8 +22,7 @@ async function run() {
         task VARCHAR(1024) NOT NULL,
         completed BOOLEAN DEFAULT FALSE NOT NULL,
         shared BOOLEAN DEFAULT FALSE NOT NULL,
-        user_id INTEGER NOT NULL REFERENCES users(id),
-        user_name VARCHAR(512) NOT NULL
+        user_id INTEGER NOT NULL REFERENCES users(id)
       );
     `);
 
