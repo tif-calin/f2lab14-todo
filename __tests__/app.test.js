@@ -28,18 +28,35 @@ describe('API Routes', () => {
       expect(response.status).toBe(200);
 
       user = response.body;
+      
     });
 
     // append the token to your requests:
     //  .set('Authorization', user.token);
     
-    it('VERB to /api/route [with context]', async () => {
+    it('POST to /api/todos get all the users todos', async () => {
+      const expected = {
+        id: expect.any(Number),
+        task: 'walk the cats',
+        completed: false,
+        shared: false,
+        userId: user.id
+      };
+
+     
+
+      const task = {
+        task: 'walk the cats',
+        completed: false,
+        shared: false
+      };
+
+      const response =  await request.post('/api/todos').set('Authorization', user.token).send(task);
       
-      // remove this line, here to not have lint error:
-      user.token;
+      
     
-      // expect(response.status).toBe(200);
-      // expect(response.body).toEqual(?);
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(expected);
       
     });
 
