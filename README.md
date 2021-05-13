@@ -53,11 +53,12 @@ Change all the files in the `data` directory to match the data model of your app
 # Plan
 1. Change the data to todo data
 2. Change create-tables, drop-tables, load-seed-data, etc.
-3. Define endpoints in app.js
+3. Setup tests for todo data
+4. Define endpoints in app.js
     - GET /api/me/todos
     - POST api/todos
-    -DELETE /api/todos/:id
-    -PUT /api/todos/:id/completed
+    - DELETE /api/todos/:id
+    - PUT /api/todos/:id/completed
     - (stretch) PUT /api/todos/:id/shared
     - (stretch) GET /api/todos
-4. Heroku Deployment
+5. Heroku Deployment
