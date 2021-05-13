@@ -56,8 +56,8 @@ Change all the files in the `data` directory to match the data model of your app
 3. Define endpoints in app.js
     - GET /api/me/todos
     - POST api/todos
-    -DELETE /api/todos/:id
-    -PUT /api/todos/:id/completed
+    - DELETE /api/todos/:id
+    - PUT /api/todos/:id/completed
     - (stretch) PUT /api/todos/:id/shared
     - (stretch) GET /api/todos
 4. Heroku Deployment
