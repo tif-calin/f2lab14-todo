@@ -109,6 +109,67 @@ describe('API Routes', () => {
 
     });
 
+    it('GET /api/todos get all todos that are shared', async () => {
+
+      // make two test tasks
+      const task1 = {
+        task: 'throw a rock',
+        completed: false,
+        shared: true
+      };
+      const task2 = {
+        task: 'abolish prison',
+        completed: true,
+        shared: true
+      };
+
+      // push 2 tasks from 2 different users
+      const response1 = await request
+        .post('/api/todos')
+        .set('Authorization', user.token)
+        .send(task1);
+      const response2 = await request
+        .post('/api/todos')
+        .set('Authorization', user2.token)
+        .send(task2);
+      
+      expect(response1.status).toBe(200);
+      expect(response2.status).toBe(200);
+
+      // test to make sure both tasks are in the shared GET
+      const response = await request.get('/api/todos').set('Authorization', user.token);
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(expect.arrayContaining([response1.body, response2.body]));
+
+    });
+
+    it('PUT /api/todos/:id/completed completes the task', async () => {
+      const task = (await request.get('/api/me/todos').set('Authorization', user.token)).body[0];
+      task.completed = !task.completed;
+
+      const response = await request
+        .put(`/api/todos/${task.id}/completed`)
+        .set('Authorization', user.token)
+        .send(task);
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(task);
+    });
+
+    it('PUT /api/todos/:id/shared completes the task', async () => {
+      const task = (await request.get('/api/me/todos').set('Authorization', user.token)).body[0];
+      task.shared = !task.shared;
+
+      const response = await request
+        .put(`/api/todos/${task.id}/shared`)
+        .set('Authorization', user.token)
+        .send(task);
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(task);
+    });
+
     it('DELETE from /api/todos/:id delete user todo', async () => {
       const response = await request
         .get('/api/me/todos')
