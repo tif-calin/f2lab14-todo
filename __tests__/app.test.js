@@ -40,7 +40,7 @@ describe('API Routes', () => {
       
       expect(response2.status).toBe(200);
       
-      user2 = response.body;
+      user2 = response2.body;
       
     });
 
@@ -100,12 +100,12 @@ describe('API Routes', () => {
       // get list of todos from first user only
       const response = await request
         .get('/api/me/todos')
-        .set('Authorization', user.token);
+        .set('Authorization', user2.token);
       
       // test to make sure only from this user
       expect(response.status).toBe(200);
-      expect(response.body).toEqual(expect.not.arrayContaining([response2.body]));
-      expect(response.body).toEqual([response1.body]);
+      expect(response.body).toEqual(expect.not.arrayContaining([response1.body]));
+      expect(response.body).toEqual([response2.body]);
 
     });
 
