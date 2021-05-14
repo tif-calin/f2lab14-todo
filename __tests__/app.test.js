@@ -109,5 +109,20 @@ describe('API Routes', () => {
 
     });
 
+    it('DELETE from /api/todos/:id delete user todo', async () => {
+      const response = await request
+        .get('/api/me/todos')
+        .set('Authorization', user.token);
+
+      const toDelete = response.body[0];
+
+      const response2 = await request
+        .delete(`/api/todos/${toDelete.id}`)
+        .set('Authorization', user.token);
+
+      expect(response.status).toBe(200);
+      expect(response2.body).toEqual(expect.not.arrayContaining([toDelete]));
+    });
+
   });
 });
