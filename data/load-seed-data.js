@@ -29,7 +29,7 @@ async function run() {
         INSERT INTO todos (task, completed, shared, user_id, user_name)
         VALUES ($1, $2, $3, $4, $5)
         `,
-        [todo.task, todo.completed, todo.shared, user.id, user.name]);
+        [todo.task, todo.completed, todo.shared, 1, user.name]);
       })
     );
 
